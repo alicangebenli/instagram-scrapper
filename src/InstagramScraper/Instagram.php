@@ -1725,7 +1725,18 @@ class Instagram
         if ($jsonResponse['status'] !== 'ok') {
             throw new InstagramException('Response status is ' . $jsonResponse['status'] . '. Body: ' . static::getErrorBody($response->body) . ' Something went wrong. Please report issue.', $response->code);
         }
+    }   
+
+     /**
+     *
+     * @return void
+     * @throws InstagramException
+     */
+    public function follow($userId)
+    {
+        $response = Request::post(Endpoints::getFollowUrl($userId), $this->generateHeaders($this->userSession));
     }
+
 
     /**
      * @param int|string|Media $mediaId
